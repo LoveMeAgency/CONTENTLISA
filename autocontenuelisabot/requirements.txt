@@ -1,0 +1,7 @@
+kurigram
+tgcrypto
+sqlalchemy
+certifi
+Pillow
+pillow-heif
+tzdata
