@@ -1,0 +1,22 @@
+x-bot-template: &bot-template
+  restart: always
+  working_dir: /app
+  command: ["python", "-u", "bot.py"]
+  environment:
+    TZ: Europe/Paris           # ajuste si besoin
+    PYTHONUNBUFFERED: "1"
+  logging:
+    driver: json-file
+    options:
+      max-size: "10m"
+      max-file: "3"
+
+services:
+  autocontenuelisabot:
+    <<: *bot-template
+    build: ./autocontenuelisabot
+    container_name: autocontenuelisabot
+    volumes:
+
+./autocontenuelisabot:/app
+./autocontenuelisabot/session:/app/session
