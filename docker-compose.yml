@@ -1,3 +1,5 @@
+version: "3.9"
+
 x-bot-template: &bot-template
   restart: always
   working_dir: /app
@@ -12,11 +14,10 @@ x-bot-template: &bot-template
       max-file: "3"
 
 services:
-  autocontenuelisabot:
+  autocontenuemmabot:
     <<: *bot-template
-    build: ./autocontenuelisabot
-    container_name: autocontenuelisabot
+    build: ./autocontenuemmabot
+    container_name: autocontenuemmabot
     volumes:
-
-./autocontenuelisabot:/app
-./autocontenuelisabot/session:/app/session
+      - ./autocontenuemmabot:/app
+      - ./autocontenuemmabot/session:/app/session
