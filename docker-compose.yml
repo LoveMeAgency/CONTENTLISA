@@ -14,10 +14,10 @@ x-bot-template: &bot-template
       max-file: "3"
 
 services:
-  autocontenuemmabot:
+  autocontenuelisabot:
     <<: *bot-template
-    build: ./autocontenuemmabot
-    container_name: autocontenuemmabot
+    build: ./autocontenuelisabot
+    container_name: autocontenuelisabot
     volumes:
-      - ./autocontenuemmabot:/app
-      - ./autocontenuemmabot/session:/app/session
+      - ./autocontenuelisabot:/app
+      - ./autocontenuelisabot/session:/app/session
