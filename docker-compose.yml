@@ -1,11 +1,11 @@
 version: "3.9"
 
 x-bot-template: &bot-template
-  restart: unless-stopped
+  restart: always
   working_dir: /app
-  command: ["python3", "-u", "bot.py"]
+  command: ["python", "-u", "bot.py"]
   environment:
-    TZ: Europe/Malta
+    TZ: Europe/Paris           # ajuste si besoin
     PYTHONUNBUFFERED: "1"
   logging:
     driver: json-file
@@ -16,27 +16,8 @@ x-bot-template: &bot-template
 services:
   autocontenuelisabot:
     <<: *bot-template
-    build: 
-      context: ./autocontenuelisabot
-      dockerfile: Dockerfile
+    build: ./autocontenuelisabot
     container_name: autocontenuelisabot
     volumes:
-      # Mount the entire app directory (read-only for code)
-      - ./autocontenuelisabot:/app:ro
-      # Mount database and session directories with write permissions
-      - autocontenuelisabot_database:/app/database
-      - autocontenuelisabot_session:/app/session
-    networks:
-      - contentlisa_network
-
-# Named volumes for data persistence
-volumes:
-  autocontenuelisabot_database:
-    driver: local
-  autocontenuelisabot_session:
-    driver: local
-
-# Network for service isolation
-networks:
-  contentlisa_network:
-    driver: bridge
+      - ./autocontenuelisabot:/app
+      - ./autocontenuelisabot/session:/app/session
